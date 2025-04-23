@@ -1,73 +1,29 @@
 #include <iostream>
-#include "number.h"
-using namespace std;
+#include "LinkedPQ.h"
 
 int main()
 {
-    //testing both constructors 
-    Number n1;      
-    Number n2(2);   
+    LinkedPQ<char> pq;
 
-    cout << "Enter an integer for n1: ";
-    n1.input();      
+    pq.Enqueue('A', 5);
+    pq.Enqueue('C', 5);
+    pq.Enqueue('Z', 9);
+    pq.Enqueue('B', 5);
+    pq.Enqueue('X',10);
 
-    cout << "n1 = ";
-    n1.output();    
-    cout << endl;
+    cout << "Initial queue:\n";
+    //  should be: X(10) -> Z(9) -> A(5) -> C(5) -> B(5)
+    pq.Print(); 
 
-    cout << "n2 = ";
-    n2.output();
-    cout << endl;
+    char temp;
 
-    // testing + operator
-    Number sum = n1 + n2;
-    cout << "n1 + n2 = ";
-    sum.output();
-    cout << endl;
+    pq.Dequeue(temp);
+    cout << "\nDequeued: " << temp << '\n';
+    pq.Print();
 
-    // testing - operator 
-    Number diff = n1 - n2;
-    cout << "n1 - n2 = ";
-    diff.output();
-    cout << endl;
-
-    // testing all the comparison 
-    if (n1.isEqualTo(n2))
-        cout << "n1 == n2\n";
-    else if (n1.isNotEqualTo(n2))
-        cout << "n1 != n2\n";
-
-    if (n1.isZero())
-        cout << "n1 is zero\n";
-    else
-        cout << "n1 is not zero\n";
-        //test (/) here because if n1 is zero then it'll be out of bound
-        Number quotient = n1 / n2; 
-        cout << "n1 / n2 = ";
-        quotient.output();
-        cout << endl;
-
-    
-    // testing ++ and -- 
-    cout << "n1++ \n";
-    n1.increment();
-    cout << "n1 now is = ";
-    n1.output();
-    cout << endl;
-
-    cout << "n2-- \n";
-    n2.decrement();
-    cout << "n2 now is = ";
-    n2.output();
-    cout << endl;
-
-    // testing * 
-    Number product = n1 * n2;
-    cout << "n1 * n2 = ";
-    product.output();
-    cout << endl;
-
-    
+    pq.Dequeue(temp);
+    cout << "\nDequeued: " << temp << '\n';
+    pq.Print();
 
     return 0;
 }
